@@ -233,4 +233,4 @@ list the rule:
 sudo iptables -L
 try to ping ur neighbour machine again
 ping 192.168.92.17
-u can not see receive icmp echo reply packets.
+u can not see receive icmp echo reply packets..
