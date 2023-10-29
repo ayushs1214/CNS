@@ -1,0 +1,117 @@
+//  Hashing n auditing using Hashdeep tool in Kali Linux //
+sudo su
+//Then enter password of the machine //
+
+mkdir <directory_name>
+ls //to list the files//
+
+cd directory_name 
+pwd/home/user/directory_name
+
+hashdeep -c md5 -r /home/user/directory_name/desktop>xyz.txt
+run the above command again
+
+hashdeep -a -r -k xyz.txt /home/user/desktop
+Audit passed will be notified
+
+hashdeep -a -r -k xyz.txt /home/user/desktop
+Audit failed will be notified
+
+
+---------------------------------------------------------------------------------
+
+AIM: Study the use of network reconnaissance tools like WHOIS , dig , 
+traceroute , nslookup, nikto, Dmitry to gather information about networks and 
+domain registrars.
+
+sudo apt install whois
+Enter the password
+
+whois 205.251.242.103
+//thats an ipv4 address of amazon//
+
+//you can also check for domain names, for e.g.//
+whois google.com or whois youtube.com
+
+----traceroute
+
+sudo apt install traceroute
+traceroute youtube.com or facebook.com or google.com etc
+traceroute <any ipv4 address> 
+//for e.g.//
+traceroute 172.217.14.238
+
+----dig
+
+sudo apt install dnsutils
+
+dig google.com
+dig google.com ANY
+
+dig -x <ip address> 
+//for e.g.//
+dig -x 172.217.14.238
+
+dig +noall +answer -x 172.217.14.238  
+
+---- nslookup
+
+nslookup youtube.com
+nslookup   -type=ns [youtube.com]
+nslookup -type=ns youtube.com
+
+sudo apt install dnsutils -y
+
+nslookup 192.168.0.10
+nslookup -type=ns  [google.com]
+nslookup -type=ns google.com
+
+-----nikto------
+
+sudo apt install nikto -y
+nikto -h youtube.com
+nikto -h tsec.edu
+
+----dmitry---
+
+sudo apt install git
+cd desktop/ cd downloads
+git clone https://github.com/jaygreig86/dmitry.git
+
+dmitry -winespo example.txt google.com
+sudo apt install dmitry
+
+-------------------------------------------------------
+
+AIM: Packet sniffer TCPDUMP
+
+sudo tcpdump -K
+sudo tcpdump -b
+sudo tcpdump -e
+sudo tcpdump
+Enter password
+
+sudo tcpdump -D
+tcpdump -h
+sudo tcpdump -a
+sudo tcpdump -f
+sudo tcpdump -b
+
+
+----------------------------------------------------------
+
+AIM: Installation of NMAP and using it with different options to scan open 
+ports, perform OS fingerprinting, ping scan, TCP port scan, UDP post scan, etc.
+
+sudo nmap su
+nmap sU tsec.edu
+nmap sT tsec.edu
+sudo usermod -aG wireshark $(whoami)
+ifconfig
+ipconfig
+nmap sS tsec.edu
+nmap sS google.com
+sudo nmap sU google.com
+sudo nmap sU tsec.edu
+sudo nmap sS google.com
+sudo nmap sT google.com
