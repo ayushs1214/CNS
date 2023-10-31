@@ -1,0 +1,148 @@
+AIM: To make a EC2 Machine in AWS.
+
+Step 1. Select a region
+Step 2. Navigate to the EC2 Console
+Step 3. Create the EC2 instance
+Step 4. Choose an instance type
+Step 5. Configure storage
+Step 6. Tag the instance
+Step 7. Build in security
+Step 8. Enable SSH access with a key
+
+For theory: https://www.techtarget.com/searchcloudcomputing/tutorial/How-to-create-an-EC2-instance-from-AWS-Console
+
+---
+
+AIM: To create a Cloud9 Environment.
+
+https://ec2spotworkshops.com/ecs-spot-capacity-providers/workshopsetup/setup_cloud9_workspace.html
+
+---
+
+AIM: To create a S3 bucket in AWS. Upload, download and copy objects in bucket.
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html
+
+---
+
+AIM: To study AWS code pipeline and deploy web application using code pipeline.
+
+https://aws.amazon.com/getting-started/hands-on/continuous-deployment-pipeline/
+
+Steps :-
+
+1. Login to AWS account and in search bar search IAM and click on it
+
+2. Dashboard of IAM user open and then create a new user & Set the permissions for the new user
+   ![I am User](image.png)
+   ![I am user(2)](image-1.png)
+   ![Permission](image-2.png)
+
+3. Create user and user name , usergroup will be visible on dashboard
+   ![Step 3.1](image-3.png)
+   ![Step 3.2](image-4.png)
+   ![Step 3.3](image-5.png)
+
+4. See the summary of created user and usergroup
+   ![4.1](image-6.png)
+   ![4.2](image-7.png)
+   ![4.3](image-8.png)
+
+5. Go to security credentials tab and see for console password and other details , take screenshot of these details
+   ![5.1](image-9.png)
+   ![5.2](image-10.png)
+
+6. Go to dashboard and search codecommit in search bar
+   ![6.1](image-11.png)
+   ![6.2](image-12.png)
+
+7. Go to repositories option and create a new repository , give a name to it
+   ![7.1](image-13.png)
+   ![7.2](image-14.png)
+
+8. Go to code option in left sidebar and select https there
+   ![8.1](image-15.png)
+   ![8.2](image-16.png)
+   ![8.3](image-17.png)
+
+9. Create a new application and give name to it , create a deployment group for deployment of application created
+   ![9.1](image-18.png)
+   ![9.2](image-19.png)
+   ![9.3](image-20.png)
+
+10. Select the source provider , artifact
+    ![10](image-21.png)
+
+11. Review the application and then click on deploy , after deploying success message is displayed on screen
+    ![11.1](image-22.png)
+    ![11.2](image-23.png)
+
+---
+
+AIM: To learn how to use Lamda in order to find the ContentType of Object uploaded in S3 Bucket.
+
+https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html
+
+---
+
+AIM: To understand terraform lifecycle and to build, change, and destroy AWS infrastructure using Terraform
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+
+Theory: https://k21academy.com/terraform-iac/terraform-beginners-guide/
+
+---
+
+AIM: To perform static analysis on python programs using sonarqube SAST process
+
+https://www.sonarsource.com/knowledge/languages/python/
+
+---
+
+AIM: To understand continuous monitoring using Nagios
+
+Steps :-
+
+1. Go to google.com, Search Nagios Demo Click on the first link shown below
+2. Now click on the website-
+3. Now click on login as administrator
+4. Now click on Host Group Status.
+5. Now we click on BBMap In this we can see status of following stuff in each host-
+6. Now we have Network status map which is graphical representation of the network status
+
+---
+
+AIM: To understand AWS lambda functions and create a lambda function using python to log “an image has been added” message , once the file has been added in S3 bucket.
+
+Steps :-
+
+1. Login to AWS account then Search S3 ,click on the option below shown-
+2. Create an S3 bucket by giving it a name
+3. Click on upload button after the s3 bucket is created in the object section
+4. Add any .py or .java extenstion file and click on upload
+5. Now search lambda
+6. Click create function , click on below options and click on configure
+7. Select the bucket created and create trigger ,click on create function
+8. Check the given trigger is created
+9. Click on the orange test button
+10. Check the logs , “an image has been added” message will be printed in logs
+11. terminate by clicking on delete function
+12. Empty and delete the bucket
+
+---
+
+AIM: To create a Lambda function using Python for adding data to Dynamo DB database.
+
+https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-dynamo-db.html
+
+Steps :-
+
+1. Login to AWS account and search for DynamoDB in search bar
+2. Click on DynamoDB option shown above and then click on create table
+3. Then search IAM in the search box above and create a new role , give AmazonDynamoFullAccess permission to created user
+4. Search Lambda in search box and click on it , then create a new lambda function
+5. Write the following code in code source
+6. Configure the test event and save
+7. Run the test and afterwards go to the DynamoDB>Explore items> Student where you can see the record inserted using lambda function.
+
+Drive link: https://drive.google.com/drive/folders/1QoHS7n8OV5_Ih_kb4C0dYnVGKAvpdedm?usp=sharing
